@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>世界杯 · 信息说明页</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f9f6f0;
+      font-family: 'Segoe UI', 'PingFang SC', Roboto, 'Helvetica Neue', sans-serif;
+      line-height: 1.6;
+      color: #2c2b28;
+      padding: 2rem 1.5rem;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    /* 主视觉卡片 */
+    .hero-card {
+      background-color: #ffffff;
+      border-radius: 28px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+      padding: 2.5rem 2rem;
+      margin-bottom: 2.2rem;
+      border: 1px solid #eae5db;
+    }
+
+    .hero-title {
+      font-size: 2.2rem;
+      font-weight: 500;
+      letter-spacing: -0.3px;
+      line-height: 1.25;
+      margin-bottom: 1rem;
+    }
+
+    .hero-title small {
+      display: block;
+      font-size: 1rem;
+      font-weight: 400;
+      color: #7b756b;
+      margin-top: 0.5rem;
+      letter-spacing: 0.3px;
+    }
+
+    .hero-text {
+      margin-top: 1.2rem;
+      font-size: 1.05rem;
+      color: #3d3b37;
+      max-width: 680px;
+    }
+
+    .hero-highlight {
+      background: #f2efe8;
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      font-weight: 500;
+      color: #4f4a42;
+    }
+
+    /* 信息卡片网格 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2.2rem;
+    }
+
+    .info-card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 1.8rem 1.5rem 2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+      border: 1px solid #e8e3d9;
+      transition: box-shadow 0.2s;
+    }
+
+    .info-card:hover {
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+    }
+
+    .info-card h3 {
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .info-card h3 i {
+      font-style: normal;
+      background: #eae5db;
+      border-radius: 30px;
+      padding: 0.15rem 0.6rem;
+      font-size: 0.85rem;
+      color: #5f594f;
+    }
+
+    .info-card p {
+      font-size: 0.95rem;
+      color: #46433d;
+      margin-bottom: 0.5rem;
+    }
+
+    .info-card ul {
+      list-style: none;
+      margin-top: 0.8rem;
+    }
+
+    .info-card li {
+      font-size: 0.93rem;
+      padding: 0.3rem 0 0.3rem 1.2rem;
+      position: relative;
+      color: #3f3c36;
+    }
+
+    .info-card li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #9c927f;
+    }
+
+    /* 引用块 / 提示框 */
+    .notice-box {
+      background: #f3efe7;
+      border-left: 5px solid #b7aa95;
+      padding: 1.5rem 2rem;
+      border-radius: 0 18px 18px 0;
+      margin-bottom: 2.2rem;
+      font-size: 0.98rem;
+    }
+
+    .notice-box strong {
+      font-weight: 600;
+      color: #3a3630;
+    }
+
+    /* 自然链接段落卡片 */
+    .link-paragraph {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 2rem 2rem 2.2rem;
+      border: 1px solid #e8e3d9;
+      margin-bottom: 2rem;
+    }
+
+    .link-paragraph p {
+      font-size: 1.02rem;
+      color: #3b3832;
+      margin-bottom: 0.8rem;
+    }
+
+    .link-paragraph a {
+      color: #5f5a4f;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: #c8bfaf;
+      font-weight: 500;
+      transition: text-decoration-color 0.2s;
+    }
+
+    .link-paragraph a:hover {
+      text-decoration-color: #8f846e;
+    }
+
+    /* FAQ 摘要 */
+    .faq-mini {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 1.6rem 2rem 2rem;
+      border: 1px solid #e8e3d9;
+      margin-bottom: 1.8rem;
+    }
+
+    .faq-mini h3 {
+      font-weight: 500;
+      font-size: 1.2rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .faq-item {
+      margin-bottom: 1rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid #f0ece4;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .faq-q {
+      font-weight: 500;
+      font-size: 0.98rem;
+      margin-bottom: 0.25rem;
+      color: #3f3b34;
+    }
+
+    .faq-a {
+      font-size: 0.92rem;
+      color: #5e5a51;
+    }
+
+    /* 页脚 */
+    .footer-note {
+      text-align: center;
+      padding: 2rem 0 0.5rem;
+      color: #8d877d;
+      font-size: 0.85rem;
+      border-top: 1px solid #e2dcd0;
+      margin-top: 0.8rem;
+    }
+
+    /* 响应式 */
+    @media (max-width: 700px) {
+      body {
+        padding: 1.2rem 1rem;
+      }
+      .hero-card {
+        padding: 1.8rem 1.2rem;
+      }
+      .hero-title {
+        font-size: 1.7rem;
+      }
+      .card-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .info-card {
+        padding: 1.5rem 1.2rem;
+      }
+      .notice-box {
+        padding: 1.2rem 1.2rem;
+      }
+      .link-paragraph {
+        padding: 1.5rem 1.2rem;
+      }
+      .faq-mini {
+        padding: 1.2rem 1.2rem 1.6rem;
+      }
+    }
+
+    @media (max-width: 450px) {
+      .hero-title {
+        font-size: 1.4rem;
+      }
+      .hero-text {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- 主视觉卡片 -->
+    <div class="hero-card">
+      <h1 class="hero-title">
+        世界杯 · 信息页
+        <small>基于公开内容整理 · 2026</small>
+      </h1>
+      <p class="hero-text">
+        这是一个围绕 <span class="hero-highlight">世界杯</span> 主题整理的信息说明页。
+        我们尝试以稳定、清晰的视角，展现相关背景与用途，帮助浏览者快速了解基本脉络。
+        本页内容均来自可公开获取的信息，经过整理后以卡片形式呈现。
+      </p>
+    </div>
+
+    <!-- 用途卡片 -->
+    <div class="card-grid">
+      <div class="info-card">
+        <h3>📋 页面用途 <i>说明</i></h3>
+        <p>该页面作为信息聚合页，主要承担以下功能：</p>
+        <ul>
+          <li>集中展示世界杯相关背景与上下文</li>
+          <li>提供稳定的内容入口，不依赖跳转</li>
+          <li>通过卡片式版型区分不同信息模块</li>
+          <li>降低信息噪音，便于快速浏览</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>🧭 使用场景 <i>参考</i></h3>
+        <ul>
+          <li>初次了解世界杯概况的读者</li>
+          <li>需要快速查阅信息要点的用户</li>
+          <li>希望获得结构化说明的浏览者</li>
+          <li>作为其他页面的前置说明或索引</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 适合人群卡片（单独卡片） -->
+    <div class="card-grid" style="grid-template-columns: 1fr;">
+      <div class="info-card">
+        <h3>👥 适合人群</h3>
+        <p>本页面向以下读者群体，内容语气保持中立平实：</p>
+        <ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.2rem 1rem;">
+          <li>赛事兴趣爱好者</li>
+          <li>信息整理者</li>
+          <li>内容研究者</li>
+          <li>普通浏览用户</li>
+          <li>初次接触者</li>
+          <li>需要快速参考的人</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 提示框 / 引用块 -->
+    <div class="notice-box">
+      <strong>📌 说明：</strong> 本页所有内容均基于公开资料整理，不构成任何官方立场。
+      页面仅作为信息展示与索引，不涉及用户数据收集或个性化推荐。
+      若需访问外部资源，请留意对应的使用条款与隐私政策。
+    </div>
+
+    <!-- 自然链接段落 -->
+    <div class="link-paragraph">
+      <p>
+        不少人在了解赛事信息时，往往会先找一个稳定的信息起点。
+        如果你也在关注 <a href="https://gate-fifa2026.com">世界杯</a> 的相关动态，
+        或许可以从这个页面获得一些整理过的参考内容。
+        我们尽量让信息结构保持简单，方便你快速定位自己关心的部分。
+      </p>
+      <p>
+        另外，关于 <a href="https://gate-fifa2026.com">世界杯</a> 的更多背景资料，
+        可以参考赛事官方发布的信息渠道。本页作为辅助说明页，
+        旨在提供一种清晰的内容组织方式，不替代任何官方公告或权威数据源。
+      </p>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="faq-mini">
+      <h3>❓ 常见问题摘要</h3>
+      <div class="faq-item">
+        <div class="faq-q">这个页面是官方页面吗？</div>
+        <div class="faq-a">不是。本页为独立整理的信息说明页，仅供浏览参考。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">信息是否保持更新？</div>
+        <div class="faq-a">我们尽可能依据公开资料整理，但不保证实时同步所有变动。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">如何快速找到核心链接？</div>
+        <div class="faq-a">页面中自然嵌入了相关链接，可根据上下文直接访问。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">内容是否可以转载？</div>
+        <div class="faq-a">本页内容采用通用整理格式，如需引用请自行核实原始信息。</div>
+      </div>
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footer-note">
+      信息卡片式说明页 · 内容基于公开整理 · 非官方页面
+    </div>
+
+  </div>
+</body>
+</html>
